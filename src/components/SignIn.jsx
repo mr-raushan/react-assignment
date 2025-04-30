@@ -10,8 +10,13 @@ function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Sign in attempted with:", formData);
-    navigate("/settings");
+    // Pass user data directly through navigation state
+    navigate("/settings", {
+      state: {
+        name: "Marry Doe",
+        email: formData.email,
+      },
+    });
   };
 
   const handleChange = (e) => {

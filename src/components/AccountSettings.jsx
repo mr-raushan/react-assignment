@@ -1,4 +1,14 @@
+import { useLocation, Navigate } from "react-router-dom";
+
 function AccountSettings() {
+  const location = useLocation();
+  const user = location.state;
+
+  // Redirect to sign in if no user data
+  if (!user) {
+    return <Navigate to="/signin" replace />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -12,15 +22,15 @@ function AccountSettings() {
             <div className="relative">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvl-3s27sN3QHbWiuRzijVHVJRcZevBK56VQ&s"
-                alt="Marry Doe"
+                alt={user.name}
                 className="w-16 h-16 rounded-full object-cover"
               />
               <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-[#6C25FF] rounded-full border-2 border-white"></div>
             </div>
 
             <div>
-              <h2 className="text-gray-900 font-medium text-lg">Marry Doe</h2>
-              <p className="text-gray-600 text-sm">Marry@Gmail.Com</p>
+              <h2 className="text-gray-900 font-medium text-lg">{user.name}</h2>
+              <p className="text-gray-600 text-sm">{user.email}</p>
             </div>
           </div>
 

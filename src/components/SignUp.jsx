@@ -80,8 +80,13 @@ function SignUp() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted:", formData);
-      navigate("/settings");
+      // Pass user data through navigation state
+      navigate("/settings", {
+        state: {
+          name: formData.fullName,
+          email: formData.emailAddress,
+        },
+      });
     }
   };
 
